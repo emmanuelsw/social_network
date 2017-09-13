@@ -17,13 +17,19 @@ export class Login extends React.Component {
     };
   }
 
-  enableSubmitBtn() {
+  handleChange = (e) => {
+    let newState = {};
+    newState[e.target.name] = e.target.value;
+    this.setState(newState);
+  }
+
+  enableSubmitBtn = () => {
     this.setState({
       canSubmit: true
     })
   }
 
-  disableSubmitBtn() {
+  disableSubmitBtn = () => {
     this.setState({
       canSubmit: false
     })
@@ -32,12 +38,12 @@ export class Login extends React.Component {
   render() {
     return(
       <MuiThemeProvider>
-        <Formsy.Form onValid={() => this.enableSubmitBtn()} onInvalid={() => this.disableSubmitBtn()}>
+        <Formsy.Form onValid={this.enableSubmitBtn} onInvalid={this.disableSubmitBtn}>
           <div>
-            <FormsyText name="email" required validations="isEmail" validationError="Ingresa un email válido" floatingLabelText="Correo electrónico"/>
+            <FormsyText name="email" required onChange={this.handleChange} validations="isEmail" validationError="Ingresa un email válido" floatingLabelText="Correo electrónico"/>
           </div>
           <div>
-            <FormsyText name="password" required type="password" floatingLabelText="Contraseña"/>
+            <FormsyText name="password" required onChange={this.handleChange} type="password" floatingLabelText="Contraseña"/>
           </div>
           <div>
             <RaisedButton disabled={!this.state.canSubmit} type="submit" label="Iniciar sesión" />
