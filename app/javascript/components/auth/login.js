@@ -3,58 +3,15 @@ import Formsy from 'formsy-react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import RaisedButton from 'material-ui/RaisedButton';
-import { blueA400, redA400 } from 'material-ui/styles/colors';
+import { Base, styles } from './base';
 
-const styles = {
-  buttonTop: {
-    marginTop: '1em'
-  },
-  underlineStyle: {
-    borderColor: blueA400
-  },
-  floatingLabelFocusStyle: {
-    color: blueA400
-  },
-  leftSpace: {
-    marginLeft: '1em'
-  }
-};
-
-export class Login extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      canSubmit: true,
-      email: '',
-      password: '',
-      error: ''
-    };
-  }
-
-  handleChange = (e) => {
-    let newState = {};
-    newState[e.target.name] = e.target.value;
-    this.setState(newState);
-  }
-
-  enableSubmitBtn = () => {
-    this.setState({
-      canSubmit: true
-    })
-  }
-
-  disableSubmitBtn = () => {
-    this.setState({
-      canSubmit: false
-    })
-  }
+export class Login extends Base {
 
   render() {
     return(
       <MuiThemeProvider>
         <Formsy.Form onValid={this.enableSubmitBtn} onInvalid={this.disableSubmitBtn}>
+
           <div>
             <FormsyText 
               name="email" 
@@ -67,6 +24,7 @@ export class Login extends React.Component {
               floatingLabelText="Correo electrónico"
             />
           </div>
+
           <div>
             <FormsyText 
               name="password" 
@@ -78,16 +36,19 @@ export class Login extends React.Component {
               floatingLabelText="Contraseña"
             />
           </div>
+
           <div>
             <RaisedButton 
               style={styles.buttonTop}
-              backgroundColor={redA400}
+              backgroundColor={styles.red}
               labelColor='#ffffff'
               disabled={!this.state.canSubmit}
               type="submit"
               label="Iniciar sesión"
             />
+            <a href="#" style={styles.leftSpace}>Crear cuenta</a>
           </div>
+
         </Formsy.Form>
       </MuiThemeProvider>
     );
