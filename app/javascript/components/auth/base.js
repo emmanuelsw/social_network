@@ -49,4 +49,8 @@ export class Base extends React.Component {
     })
   }
 
+  reload() {
+    window.location.href = window.location.href;
+  }
+
 }

@@ -10,7 +10,7 @@ export class Login extends Base {
 
   submit = () => {
     reqwest({
-      url: '/users/sign_in',
+      url: '/users/sign_in.json',
       method: 'POST',
       data: {
         user: {
@@ -22,7 +22,7 @@ export class Login extends Base {
         'X-CSRF-Token': window.SocialNetwork.token
       }
     }).then(data => {
-      console.log(data);
+      this.reload();
     }).catch(err => console.log(err));
   }
 
