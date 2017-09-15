@@ -8,6 +8,21 @@ import reqwest from 'reqwest';
 
 export class SignUp extends Base {
 
+  handleError = (err) => {
+    const jsonError = JSON.parse(err.response);
+    const errors = jsonError.errors;
+    console.log(err);
+    let errorsResponse = [];
+
+    for(let key in errors) {
+      errorsResponse.push(<li>{key} {errors[key]}</li>)
+    }
+
+    this.setState({
+      error: errorsResponse
+    })
+  }
+
   submit = () => {
     reqwest({
       url: '/users.json',
@@ -24,14 +39,14 @@ export class SignUp extends Base {
       }
     }).then(data => {
       this.reload();
-    }).catch(err => console.log(err));
+    }).catch(err => this.handleError(err));
   }
 
   render() {
     return(
       <MuiThemeProvider>
         <Formsy.Form onValid={this.enableSubmitBtn} onInvalid={this.disableSubmitBtn} onValidSubmit={this.submit}>
-
+          <ul>{this.state.error}</ul>
           <div>
             <FormsyText 
               name="email" 
