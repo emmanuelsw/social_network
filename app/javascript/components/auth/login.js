@@ -46,7 +46,7 @@ export class Login extends Base {
               type="submit"
               label="Iniciar sesión"
             />
-            <a href="#" style={styles.leftSpace}>Crear cuenta</a>
+            <a href="#" onClick={this.props.toggle} style={styles.leftSpace}>Crear cuenta</a>
           </div>
 
         </Formsy.Form>

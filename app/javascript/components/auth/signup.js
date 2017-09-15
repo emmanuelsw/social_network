@@ -58,7 +58,7 @@ export class SignUp extends Base {
               type="submit"
               label="Registrarse"
             />
-						<a href="#" style={styles.leftSpace}>Ya tengo cuenta</a>
+						<a href="#" onClick={this.props.toggle} style={styles.leftSpace}>Ya tengo cuenta</a>
           </div>
 
         </Formsy.Form>
