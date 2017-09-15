@@ -4,13 +4,30 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Base, styles } from './base';
+import reqwest from 'reqwest';
 
 export class SignUp extends Base {
+
+  submit = () => {
+    reqwest({
+      url: '/users',
+      method: 'POST',
+      data: {
+        user: {
+          email: this.state.email,
+          password: this.state.password,
+          password_confirmation: this.state.passwordConfirmation
+        }
+      }
+    }).then(data => {
+      console.log(data);
+    }).catch(err => console.log(err));
+  }
 
   render() {
     return(
       <MuiThemeProvider>
-        <Formsy.Form onValid={this.enableSubmitBtn} onInvalid={this.disableSubmitBtn}>
+        <Formsy.Form onValid={this.enableSubmitBtn} onInvalid={this.disableSubmitBtn} onValidSubmit={this.submit}>
 
           <div>
             <FormsyText 
