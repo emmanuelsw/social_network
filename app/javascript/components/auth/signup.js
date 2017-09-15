@@ -18,6 +18,9 @@ export class SignUp extends Base {
           password: this.state.password,
           password_confirmation: this.state.passwordConfirmation
         }
+      },
+      headers: {
+        'X-CSRF-Token': window.SocialNetwork.token
       }
     }).then(data => {
       console.log(data);
