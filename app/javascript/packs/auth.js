@@ -23,7 +23,7 @@ class Auth extends React.Component {
   render() {
     return(
       <div>
-        { this.state.showLogin ? <Login toggle={this.toggle} /> : <SignUp toggle={this.toggle}/> }
+        { this.state.showLogin ? <Login toggle={this.toggle} /> : <SignUp toggle={this.toggle} /> }
       </div>
     );
   }
