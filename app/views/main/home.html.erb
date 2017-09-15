@@ -1,1 +1,7 @@
 <%= react_component("Auth") %>
+
+<% if user_signed_in? %>
+	<p>Hola usuario <%= current_user.email %></p>
+<% end %>
+
+
